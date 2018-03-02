@@ -1,6 +1,7 @@
 #include "Fighter.h"
 
-Fighter::Fighter(SDLGame* game, int id, BulletsManager* bulletsManager) : Container(game), id_(id), bulletsManager(bulletsManager){
+//inicializamos atributos y añadimos componentes
+Fighter::Fighter(SDLGame* game, int id) : Container(game), id_(id){
 	setWidth(40);
 	setHeight(40);
 	setPosition(Vector2D(game->getWindowWidth() / 2 - getWidth(), game->getWindowHeight() / 2 - getHeight()));
@@ -12,7 +13,7 @@ Fighter::Fighter(SDLGame* game, int id, BulletsManager* bulletsManager) : Contai
 	rotation = new RotationInputComponent(5, SDLK_LEFT, SDLK_RIGHT);
 	circular = new CircularMotionPhysics();
 	acceleration = new AccelerationInputComponent(SDLK_UP, SDLK_DOWN, 1, 3, 0.8);
-	gun = new GunInputComponent(bulletsManager, SDLK_SPACE);
+	gun = new GunInputComponent(SDLK_SPACE);
 	addRenderComponent(naveSprite);
 	addInputComponent(rotation);
 	addPhysicsComponent(circular);

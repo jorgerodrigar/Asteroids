@@ -1,15 +1,14 @@
 #pragma once
 #include "InputComponent.h"
-#include "BulletsManager.h"
 #include "Messages.h"
 #include "Observable.h"
 
+//componente que se encarga de mandar un mensaje a StarWarsBulletsManager cuando pulsamos la tecla de disparo
 class GunInputComponent : public InputComponent, public Observable{
 private:
-	SDL_Keycode shoot_;
-	BulletsManager* bulletsManager_;
+	SDL_Keycode shoot_;//tecla de disparo
 public:
-	GunInputComponent(BulletsManager* bulletsManager, SDL_Keycode shoot) : shoot_(shoot), bulletsManager_(bulletsManager) {}
+	GunInputComponent(SDL_Keycode shoot) : shoot_(shoot) {}
 	~GunInputComponent(){}
 	virtual void handleInput(GameObject* o, Uint32 time, const SDL_Event& event);
 };

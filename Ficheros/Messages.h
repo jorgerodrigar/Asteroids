@@ -3,7 +3,7 @@
 
 #include "Asteroid.h"
 #include "Bullet.h"
-#include "Fighter.h"
+class Fighter;
 
 enum MessageId {
 	BULLET_ASTROID_COLLISION,

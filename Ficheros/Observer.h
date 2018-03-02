@@ -4,9 +4,7 @@
 #include "GameObject.h"
 #include "Messages.h"
 
-/*
- *
- */
+//recibe mensajes
 class Observer {
 public:
 	Observer();

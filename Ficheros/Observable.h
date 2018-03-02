@@ -1,13 +1,11 @@
 #ifndef SRC_OBSERVABLE_H_
 #define SRC_OBSERVABLE_H_
 
-#include "Observer.h"
+#include "Observer.h";
 #include <vector>
 #include "Messages.h"
 
-/*
- *
- */
+//envia mensajes
 class Observable {
 public:
 	Observable();
