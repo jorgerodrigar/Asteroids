@@ -18,10 +18,12 @@ void ExampleGame::initGame() {
 	//inicializamos la nave y el gestor de balas
 	nave = new Fighter(this, 0);
 	bulletManager = new StarWarsBulletsManager(this, nave);
+	asteroidManager = new AstroidsManager(this);
 
 	//lo añadimos a la lista de actores para ser pintados y actualizados
 	actors_.push_back(nave);
 	actors_.push_back(bulletManager);
+	actors_.push_back(asteroidManager);
 
 	//establecemos el componente de disparo de la nave como observable del gestor de balas para poder enviarle el mensaje de disparo
 	dynamic_cast<Observable*>(nave->getGunObservable())->registerObserver(bulletManager);
@@ -30,6 +32,7 @@ void ExampleGame::initGame() {
 void ExampleGame::closeGame() {
 	if (nave != nullptr)delete nave;
 	if (bulletManager != nullptr)delete bulletManager;
+	if (asteroidManager != nullptr)delete asteroidManager;
 }
 
 void ExampleGame::start() {

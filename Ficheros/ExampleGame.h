@@ -5,6 +5,7 @@
 
 #include "SDLGame.h"
 #include "StarWarsBulletsManager.h"
+#include "AsteroidsManager.h"
 #include "Fighter.h"
 
 
@@ -33,6 +34,7 @@ private:
 
 	Fighter* nave;
 	StarWarsBulletsManager* bulletManager;
+	AstroidsManager* asteroidManager;
 };
 
 #endif /* EXAMPLEGAME_H_ */

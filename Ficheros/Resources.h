@@ -25,7 +25,9 @@ public:
 		AIIcon,
 		SpaceShips,
 		Airplanes,
-		Star
+		Star,
+		halcon,
+		asteroid,
 	};
 
 	// Text Messages - each is loaded as an instance of a texture
