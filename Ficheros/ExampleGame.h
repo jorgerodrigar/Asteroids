@@ -6,7 +6,7 @@
 #include "SDLGame.h"
 #include "StarWarsBulletsManager.h"
 #include "AsteroidsManager.h"
-#include "Fighter.h"
+#include "FightersManager.h"
 
 
 class ExampleGame: public SDLGame {
@@ -18,7 +18,6 @@ public:
 	// from SDLGame
 	void start();
 	void stop();
-	Fighter* getPlayer() { return nave; }
 
 private:
 	void initGame();
@@ -32,7 +31,7 @@ private:
 	bool exit_;
 	std::vector<GameObject*> actors_;
 
-	Fighter* nave;
+	FightersManager* nave;
 	StarWarsBulletsManager* bulletManager;
 	AstroidsManager* asteroidManager;
 };

@@ -19,7 +19,7 @@ private:
 	virtual void receive(Message* msg);//recibe mensajes
 	virtual void shoot(Vector2D position, Vector2D velocity);//dispara una bala
 public:
-	StarWarsBulletsManager(SDLGame* game, Fighter* nave): GameObject(game), player(nave) {
+	StarWarsBulletsManager(SDLGame* game): GameObject(game) {
 		bulletRenderer_ = new FillRectRenderer();//inicializamos todos los atributos
 		bulletPhysics_ = new BasicMotionPhysics();
 	}
@@ -34,5 +34,7 @@ public:
 	virtual void handleInput(Uint32 time, const SDL_Event& event) {}//no hace nada
 
 	virtual std::vector<Bullet*>& getBullets() { return bullets; }//devuelve el vector de balas
+
+	void setPlayer(Fighter* f) { player = f; }
 };
 
