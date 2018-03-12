@@ -1,13 +1,23 @@
 #include "AsteroidsManager.h"
 
 void AstroidsManager::receive(Message* msg) {
-	switch (msg->id_) {
-	case BULLET_ASTROID_COLLISION:
-		break;
-	case ROUND_START:
-		initAsteroids();
-		break;
-	};
+	if (msg->id_ == BULLET_ASTROID_COLLISION) {
+		BulletAstroidCollision* m = static_cast<BulletAstroidCollision*>(msg);
+		m->astroid_->setActive(false);
+		numOfAstroids_--;
+		if (m->astroid_->getGenerations() > 0) {
+			int randomNum = 2 + rand() % 5;
+			for (int i = 0; i < randomNum; i++) {
+				Asteroid* a = getAstroid();
+				a->setGenerations(m->astroid_->getGenerations() - 1);
+				a->setPosition(m->astroid_->getPosition());
+				a->setVelocity(m->astroid_->getVelocity());
+				a->setActive(true);
+				numOfAstroids_++;
+			}
+		}
+	}
+	else if (msg->id_ == ROUND_START)initAsteroids();
 }
 
 Asteroid* AstroidsManager::getAstroid(){
@@ -33,7 +43,6 @@ void AstroidsManager::initAsteroids(){
 	}
 	for (int i = 0; i < 5; i++){
 		Asteroid* a = getAstroid();
-		astroids_.push_back(a);
 		double randomPosX;
 		double randomVelX = 0;
 		double randomVelY = 0;

@@ -15,18 +15,21 @@ void ExampleGame::initGame() {
 	// hide cursor
 	SDL_ShowCursor(0);
 
-	//inicializamos la nave y el gestor de balas
+	//inicializamos el gestor de naves, el gestor de balas, el de asteroides y el de colisiones
 	bulletManager = new StarWarsBulletsManager(this);
 	asteroidManager = new AstroidsManager(this);
 	nave = new FightersManager(this, bulletManager);
 	bulletManager->setPlayer(nave->getFighter());
+	colisionManager = new CollisionManager(this, bulletManager, asteroidManager, nave);
 
-	//lo añadimos a la lista de actores para ser pintados y actualizados
+	//los añadimos a la lista de actores para ser pintados y actualizados
 	actors_.push_back(nave);
 	actors_.push_back(bulletManager);
 	actors_.push_back(asteroidManager);
+	actors_.push_back(colisionManager);
 
-	//establecemos el componente de disparo de la nave como observable del gestor de balas para poder enviarle el mensaje de disparo
+	dynamic_cast<Observable*>(colisionManager)->registerObserver(bulletManager);
+	dynamic_cast<Observable*>(colisionManager)->registerObserver(asteroidManager);
 }
 
 void ExampleGame::closeGame() {
@@ -39,10 +42,11 @@ void ExampleGame::start() {
 	exit_ = false;
 	while (!exit_) {
 		Uint32 startTime = SDL_GetTicks();
+
 		handleInput(startTime);
 		update(startTime);
-
 		render(startTime);
+
 		Uint32 frameTime = SDL_GetTicks() - startTime;
 		if (frameTime < 10)
 			SDL_Delay(10 - frameTime);

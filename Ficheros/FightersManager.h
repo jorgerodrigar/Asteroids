@@ -29,6 +29,6 @@ private:
 	RotationInputComponent* rotationComp_;
 	GunInputComponent* gunComp1_;
 	GunInputComponent* gunComp2_;
-	//BadgeRenderer* badgeRenderer_; dafuk is this?
+	//BadgeRenderer* badgeRenderer_; //powerUp
 };
 #endif /* FIGHTERSMANAGER_H_ */

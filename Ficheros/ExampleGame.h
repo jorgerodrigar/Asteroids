@@ -5,9 +5,9 @@
 
 #include "SDLGame.h"
 #include "StarWarsBulletsManager.h"
-#include "AsteroidsManager.h"
-#include "FightersManager.h"
-
+//#include "AsteroidsManager.h"
+//#include "FightersManager.h"
+#include "CollisionManager.h"
 
 class ExampleGame: public SDLGame {
 
@@ -34,6 +34,7 @@ private:
 	FightersManager* nave;
 	StarWarsBulletsManager* bulletManager;
 	AstroidsManager* asteroidManager;
+	CollisionManager* colisionManager;
 };
 
 #endif /* EXAMPLEGAME_H_ */

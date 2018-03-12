@@ -9,14 +9,17 @@ FightersManager::FightersManager(SDLGame * game, Observer * bulletsManager) : Ga
 	fighter_->setPosition(Vector2D(game->getWindowWidth() / 2 - getWidth(), game->getWindowHeight() / 2 - getHeight()));
 	//------------------------------------------------------------------------------------
 
+	//inicializamos los componentes
 	renderComp_ = new ImageRenderer(game->getResources()->getImageTexture(Resources::halcon), SDL_Rect{ 0, 0, game->getResources()->getImageTexture(Resources::halcon)->getWidth(),
-	game->getResources()->getImageTexture(Resources::halcon)->getHeight() }); //inicializamos los componentes
+	game->getResources()->getImageTexture(Resources::halcon)->getHeight() });
 	rotationComp_ = new RotationInputComponent(5, SDLK_LEFT, SDLK_RIGHT);
 	circulrMotoionComp_ = new CircularMotionPhysics();
 	accelerationComp_ = new AccelerationInputComponent(SDLK_UP, SDLK_DOWN, 1, 3, 0.8);
 	gunComp1_ = new GunInputComponent(SDLK_SPACE);
-	gunComp2_ = new GunInputComponent(SDLK_SPACE);
-	fighter_->addRenderComponent(renderComp_); //y los añadimos
+	gunComp2_ = new GunInputComponent(SDLK_SPACE);//powerUp
+
+	//y los añadimos
+	fighter_->addRenderComponent(renderComp_);
 	fighter_->addInputComponent(rotationComp_);
 	fighter_->addPhysicsComponent(circulrMotoionComp_);
 	fighter_->addInputComponent(accelerationComp_);
