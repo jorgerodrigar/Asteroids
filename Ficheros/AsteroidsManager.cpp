@@ -6,15 +6,26 @@ void AstroidsManager::receive(Message* msg) {
 		m->astroid_->setActive(false);
 		numOfAstroids_--;
 		if (m->astroid_->getGenerations() > 0) {
-			int randomNum = 2 + rand() % 5;
+			int randomNum = rand() % 4 + 2;
 			for (int i = 0; i < randomNum; i++) {
 				Asteroid* a = getAstroid();
 				a->setGenerations(m->astroid_->getGenerations() - 1);
 				a->setPosition(m->astroid_->getPosition());
-				a->setVelocity(m->astroid_->getVelocity());
+				a->reduceTam();
+				int randomVelX = (rand() % 2);
+				int randomVelY = (rand() % 2);
+				if (randomVelX == 0)randomVelX = 1;
+				else randomVelX = -1;
+				if (randomVelY == 0)randomVelY = 1;
+				else randomVelY = -1;
+				a->setVelocity(Vector2D(m->astroid_->getVelocity().getX()*randomVelX, m->astroid_->getVelocity().getY()*randomVelY));
 				a->setActive(true);
 				numOfAstroids_++;
 			}
+		}
+		if (numOfAstroids_ == 0) {
+			Message msg = { NO_MORE_ATROIDS };
+			send(&msg);
 		}
 	}
 	else if (msg->id_ == ROUND_START)initAsteroids();

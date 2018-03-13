@@ -15,6 +15,10 @@ public:
 	virtual int getGenerations() { return generations_; }
 	bool getActive(){ return active; }
 	void setActive(bool b){ active = b; }
+	void reduceTam() { 
+		setWidth(width_ / 2);
+		setHeight(height_ / 2);
+	}
 private:
 	int generations_;
 	bool active = false;

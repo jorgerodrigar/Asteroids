@@ -9,7 +9,7 @@ void CollisionManager::update(Uint32 time) {
 	for (int i = 0; i < astroids.size(); i++) {
 		if (astroids[i]->getActive() && Collisions::collides(fighter, astroids[i])) {
 			AstroidFighterCollision msg = { astroids[i], fighter };
-			send(msg);
+			send(&msg);
 		}
 	}
 
@@ -22,7 +22,7 @@ void CollisionManager::update(Uint32 time) {
 			while (j < astroids.size() && !balaChocada) {
 				if (astroids[i]->getActive() && Collisions::collides(bullets[i], astroids[j])) {
 					BulletAstroidCollision msg = { bullets[i], astroids[j] };
-					send(msg);
+					send(&msg);
 					balaChocada = true;
 				}
 				else j++;
