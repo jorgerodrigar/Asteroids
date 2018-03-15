@@ -21,21 +21,30 @@ void ExampleGame::initGame() {
 	nave = new FightersManager(this, bulletManager);
 	bulletManager->setPlayer(nave->getFighter());
 	colisionManager = new CollisionManager(this, bulletManager, asteroidManager, nave);
+	gameManager = new GameManager(this);
 
 	//los añadimos a la lista de actores para ser pintados y actualizados
 	actors_.push_back(nave);
 	actors_.push_back(bulletManager);
 	actors_.push_back(asteroidManager);
 	actors_.push_back(colisionManager);
+	actors_.push_back(gameManager);
 
 	dynamic_cast<Observable*>(colisionManager)->registerObserver(bulletManager);
 	dynamic_cast<Observable*>(colisionManager)->registerObserver(asteroidManager);
+	dynamic_cast<Observable*>(colisionManager)->registerObserver(gameManager);
+	dynamic_cast<Observable*>(asteroidManager)->registerObserver(gameManager);
+	dynamic_cast<Observable*>(gameManager)->registerObserver(nave);
+	dynamic_cast<Observable*>(gameManager)->registerObserver(bulletManager);
+	dynamic_cast<Observable*>(gameManager)->registerObserver(asteroidManager);
 }
 
 void ExampleGame::closeGame() {
 	if (nave != nullptr)delete nave;
 	if (bulletManager != nullptr)delete bulletManager;
 	if (asteroidManager != nullptr)delete asteroidManager;
+	if (colisionManager != nullptr)delete colisionManager;
+	if (gameManager != nullptr)delete gameManager;
 }
 
 void ExampleGame::start() {
