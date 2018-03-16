@@ -8,7 +8,7 @@
 //clase bala, lo que disparara el jugador
 class Bullet : public Container {
 public:
-	//inicializamos los atributos
+	///inicializamos los atributos
 	Bullet(SDLGame* game) : Container(game) {
 		setWidth(3);
 		setHeight(5);
