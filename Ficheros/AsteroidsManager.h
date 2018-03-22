@@ -20,7 +20,6 @@ public:
 		circularPhysics_ = new CircularMotionPhysics();
 		rotationPhysics_ = new RotationPhysics(2.0);
 		numOfAstroids_ = 0;
-		initAsteroids();
 	}
 	virtual ~AstroidsManager(){
 		for (int i = 0; i < astroids_.size(); i++) delete(astroids_[i]);
@@ -38,7 +37,7 @@ private:
 	RenderComponent* astroidImage_;
 	PhysicsComponent* circularPhysics_;
 	PhysicsComponent* rotationPhysics_;
-	int numOfAstroids_;
+	int numOfAstroids_, numAstroidsInicial = 5;
 };
 
 #endif /* ASTEROIDMANAGER_H_ */

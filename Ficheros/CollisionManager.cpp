@@ -20,7 +20,7 @@ void CollisionManager::update(Uint32 time) {
 		j = 0;
 		if (bullets[i]->getActive()) {
 			while (j < astroids.size() && !balaChocada) {
-				if (astroids[i]->getActive() && Collisions::collides(bullets[i], astroids[j])) {
+				if (astroids[j]->getActive() && Collisions::collides(bullets[i], astroids[j])) {
 					BulletAstroidCollision msg = { bullets[i], astroids[j] };
 					send(&msg);
 					balaChocada = true;

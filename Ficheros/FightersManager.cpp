@@ -3,11 +3,6 @@
 FightersManager::FightersManager(SDLGame * game, Observer * bulletsManager) : GameObject(game)
 {
 	fighter_ = new Fighter(game, 0);
-	
-	//-------------------PROVISONAL, TODO ESTO IRA POR MENSAJES(MAS ABAJO)----------------
-	fighter_->setActive(true);
-	fighter_->setPosition(Vector2D(game->getWindowWidth() / 2 - getWidth(), game->getWindowHeight() / 2 - getHeight()));
-	//------------------------------------------------------------------------------------
 
 	//inicializamos los componentes
 	renderComp_ = new ImageRenderer(game->getResources()->getImageTexture(Resources::halcon), SDL_Rect{ 0, 0, game->getResources()->getImageTexture(Resources::halcon)->getWidth(),
@@ -50,13 +45,15 @@ void FightersManager::render(Uint32 time)
 	}
 }
 
+//recibidor de mensajes
 void FightersManager::receive(Message* msg) {
 	switch (msg->id_) {
-	case ROUND_START:
+	case ROUND_START://al comienzo de la ronda  ponemos velocidad del caza a 0 y la posicion inicial
+		fighter_->setVelocity(Vector2D(0, 0));
 		fighter_->setActive(true);
-		fighter_->setPosition(Vector2D(game_->getWindowWidth() / 2 - getWidth(), game_->getWindowHeight() / 2 - getHeight()));
+		fighter_->setPosition(Vector2D(game_->getWindowWidth() / 2 - fighter_->getWidth()/2, game_->getWindowHeight() / 2 - fighter_->getHeight()/2));
 			break;
-	case ROUND_OVER:
+	case ROUND_OVER://al final de la ronda desactivamos al caza
 		fighter_->setActive(false);
 			break;
 	case BADGE_ON:

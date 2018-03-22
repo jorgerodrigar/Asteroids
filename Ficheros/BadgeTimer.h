@@ -10,7 +10,7 @@ public:
 		if (on_ && timeInterval_ + timeOn_ > time)static_cast<GameManager*>(o)->setBadge(false);
 	}
 	void start(Uint32 timeInterval) {
-		on_ = true;
+   		on_ = true;
 		timeOn_ = SDL_GetTicks();
 		timeInterval_ = timeInterval;
 	}

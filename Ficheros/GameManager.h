@@ -5,15 +5,23 @@
 #include "GameCtrlInputComponent.h"
 #include "GameMsgRenderer.h"
 #include "ScoreRenderer.h"
+#include "LiveRenderercpp.h"
 class BadgeTimer;
 
 class GameManager : public Container, public Observer, public Observable {
 public:
 	GameManager(SDLGame* game) : Container(game) {
-		/*addInputComponent(gameCtrl_);
+		gameCtrl_ = new GameCtrlInputComponent();
+		gameMsg_ = new GameMsgRenderer();
+		scoreRenderer_ = new ScoreRenderer();
+		livesRenderer_ = new LiveRenderer();
+		//badgeTimer_ = new BadgeTimer();
+
+		addInputComponent(gameCtrl_);
 		addRenderComponent(gameMsg_);
 		addRenderComponent(scoreRenderer_);
-		addPhysicsComponent(badgeTimer_);*/
+		addRenderComponent(livesRenderer_);
+		//addPhysicsComponent(badgeTimer_);
 	}
 	virtual ~GameManager() {};
 	bool isGameOver() const { return gameOver; }
@@ -42,9 +50,9 @@ public:
 private:
 	bool gameOver = false, running = false;
 	int vidas = 3, score = 0;
-	ScoreRenderer* scoreRenderer_;
-	//LiveRenderer livesRenderer_;
-	GameCtrlInputComponent* gameCtrl_;
-	GameMsgRenderer* gameMsg_;
-	BadgeTimer* badgeTimer_;
+	RenderComponent* scoreRenderer_;
+	RenderComponent* livesRenderer_;
+	InputComponent* gameCtrl_;
+	RenderComponent* gameMsg_;
+	//PhysicsComponent* badgeTimer_;
 };
