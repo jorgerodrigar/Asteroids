@@ -4,9 +4,7 @@
 void LiveRenderer::render(GameObject* o, Uint32 time){
 	GameManager* gm = static_cast<GameManager*>(o);
 
-	SDLGame* game = gm->getGame();
-
-	Texture* vida = game->getResources()->getImageTexture(Resources::chewbacca);
+	Texture* vida = gm->getGame()->getResources()->getImageTexture(Resources::chewbacca);
 
 	SDL_Rect destRect;
 	destRect.w = Tam*0.7;

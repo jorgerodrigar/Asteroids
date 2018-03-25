@@ -10,19 +10,7 @@ class BadgeTimer;
 
 class GameManager : public Container, public Observer, public Observable {
 public:
-	GameManager(SDLGame* game) : Container(game) {
-		gameCtrl_ = new GameCtrlInputComponent();
-		gameMsg_ = new GameMsgRenderer();
-		scoreRenderer_ = new ScoreRenderer();
-		livesRenderer_ = new LiveRenderer();
-		//badgeTimer_ = new BadgeTimer();
-
-		addInputComponent(gameCtrl_);
-		addRenderComponent(gameMsg_);
-		addRenderComponent(scoreRenderer_);
-		addRenderComponent(livesRenderer_);
-		//addPhysicsComponent(badgeTimer_);
-	}
+	GameManager(SDLGame* game);
 	virtual ~GameManager() {};
 	bool isGameOver() const { return gameOver; }
 	int getLives() const { return vidas; }
@@ -34,18 +22,11 @@ public:
 			send(&m);
 		}
 	}
-	void setGameOver(bool Gover) {
-		if (gameOver != Gover) {
-			gameOver = Gover;
-			if (!gameOver) {
-				Message m = { GAME_OVER };
-				send(&m);
-			}
-		}
-	}
+	void setGameOver(bool Gover) { if (gameOver != Gover) gameOver = Gover; }
 	int getScore() const { return score; }
 	void setScore(int i) { score = i; }
 	void setBadge(bool b);
+	void resetGame() { setScore(0); vidas = 3; gameOver = false; }//reinicia el juego (llamado desde InputCtrl cuando pulsamos una tecla y se ha acabado la partida)
 	void receive(Message* msg);
 private:
 	bool gameOver = false, running = false;
@@ -54,5 +35,5 @@ private:
 	RenderComponent* livesRenderer_;
 	InputComponent* gameCtrl_;
 	RenderComponent* gameMsg_;
-	//PhysicsComponent* badgeTimer_;
+	PhysicsComponent* badgeTimer_;
 };

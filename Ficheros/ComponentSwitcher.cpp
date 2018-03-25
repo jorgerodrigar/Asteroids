@@ -1,14 +1,14 @@
 #include "ComponentSwitcher.h"
 
-ComponentSwitcher::ComponentSwitcher(SDLGame* game, Container* o, SDL_Keycode key) :
-		GameObject(game), o_(o), key_(key), modes_(), currMode_(-1) {
+ComponentSwitcher::ComponentSwitcher(SDLGame* game, Container* o) :
+		GameObject(game), o_(o), modes_(), currMode_(-1) {
 }
 
 ComponentSwitcher::~ComponentSwitcher() {
 }
 
 void ComponentSwitcher::handleInput(Uint32 time, const SDL_Event& event) {
-	if (event.type == SDL_KEYDOWN && event.key.keysym.sym == key_) {
+	if (event.type == SDL_KEYDOWN) {
 		switchToNextMode();
 	}
 }

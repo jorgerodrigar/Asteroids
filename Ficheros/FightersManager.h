@@ -11,6 +11,8 @@
 #include "AccelerationInputComponent.h"
 #include "ImageRenderer.h"
 #include "GunInputComponent.h"
+#include "BadgeRenderer.h"
+#include "ComponentSwitcher.h"
 
 class FightersManager : public GameObject, public Observer {
 public:
@@ -28,7 +30,8 @@ private:
 	ImageRenderer* renderComp_;
 	RotationInputComponent* rotationComp_;
 	GunInputComponent* gunComp1_;
-	GunInputComponent* gunComp2_;
-	//BadgeRenderer* badgeRenderer_; //powerUp
+	GunInputComponent* gunComp2_; //powerUp
+	BadgeRenderer* badgeRenderer_;//simbolo del powerup
+	//ComponentSwitcher switcher;
 };
 #endif /* FIGHTERSMANAGER_H_ */

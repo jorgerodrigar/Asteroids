@@ -21,7 +21,8 @@ public:
 		RenderComponent* iconRC;
 	};
 
-	ComponentSwitcher(SDLGame* game, Container* o, SDL_Keycode key);
+	ComponentSwitcher() {}
+	ComponentSwitcher(SDLGame* game, Container* o);
 	virtual ~ComponentSwitcher();
 
 	virtual void handleInput(Uint32 time, const SDL_Event& event);
@@ -34,7 +35,6 @@ public:
 
 private:
 	Container* o_;
-	SDL_Keycode key_;
 	std::vector<ModeInfo> modes_;
 	int currMode_;
 };
