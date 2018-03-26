@@ -26,7 +26,7 @@ void GameManager::receive(Message* msg) {
 		break;
 	case BULLET_ASTROID_COLLISION://si una bala choca con un asteroide
 		score++;//se suman los puntos
-		if (score % 1 == 0)setBadge(true);//cada diez puntos se activa el powerup
+		if (score % 10 == 0)setBadge(true);//cada diez puntos se activa el powerup
 		break;
 	case NO_MORE_ATROIDS://si no quedan asteroides
 		setBadge(false);//se desactiva el powerup y se acaba la ronda y la partida
@@ -42,7 +42,7 @@ void GameManager::setBadge(bool b) {
 	if (b) {
 		Message msg = { BADGE_ON };
 		send(&msg);
-		static_cast<BadgeTimer*>(badgeTimer_)->start(10);
+		static_cast<BadgeTimer*>(badgeTimer_)->start(10000);
 	}
 	else {
 		Message msg = { BADGE_OFF };

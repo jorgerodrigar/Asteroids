@@ -8,7 +8,7 @@ public:
 	Asteroid(SDLGame* game) : Container(game){
 		setWidth(40);
 		setHeight(40);
-		generations_ = 2;
+		generations_ = 1;
 	}
 	virtual ~Asteroid(){}
 	virtual void setGenerations(int generations) { generations_ = generations; }

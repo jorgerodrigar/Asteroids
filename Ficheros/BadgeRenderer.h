@@ -4,7 +4,7 @@
 
 class BadgeRenderer : public RenderComponent {
 private:
-	int Tam = 50;
+	int Tam = 53;
 public:
 	BadgeRenderer() {}
 	virtual ~BadgeRenderer() {}

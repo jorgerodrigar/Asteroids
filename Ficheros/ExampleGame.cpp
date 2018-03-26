@@ -99,8 +99,9 @@ void ExampleGame::update(Uint32 time) {
 }
 
 void ExampleGame::render(Uint32 time) {
-	SDL_SetRenderDrawColor(getRenderer(), COLOR(0x00AAAAFF));
 	SDL_RenderClear(getRenderer());
+	resources_->getImageTexture(Resources::deathStar)->render(renderer_,
+	{ -100, 0, resources_->getImageTexture(Resources::deathStar)->getWidth(),resources_->getImageTexture(Resources::deathStar)->getHeight() });
 
 	for (GameObject* o : actors_) {
 		o->render(time);

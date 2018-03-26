@@ -11,19 +11,18 @@ FightersManager::FightersManager(SDLGame * game, Observer * bulletsManager) : Ga
 	circulrMotoionComp_ = new CircularMotionPhysics();
 	accelerationComp_ = new AccelerationInputComponent(SDLK_UP, SDLK_DOWN, 1, 3, 0.8);
 	gunComp1_ = new GunInputComponent(SDLK_SPACE, 5);
-	gunComp2_ = new GunInputComponent(SDLK_SPACE, 10000);//powerUp
+	gunComp2_ = new GunInputComponent(SDLK_SPACE, 100);//powerUp
 	badgeRenderer_ = new BadgeRenderer();//simbolo del powerUp
-	/*switcher = ComponentSwitcher(game_, fighter_);
+	switcher = ComponentSwitcher(game_, fighter_);
 	switcher.addMode({ gunComp1_, nullptr, nullptr, nullptr });
-	switcher.addMode({ gunComp2_, nullptr, nullptr, nullptr });*/
+	switcher.addMode({ gunComp2_, nullptr, nullptr, nullptr });
 
 	//y los añadimos
 	fighter_->addRenderComponent(renderComp_);
 	fighter_->addInputComponent(rotationComp_);
 	fighter_->addPhysicsComponent(circulrMotoionComp_);
 	fighter_->addInputComponent(accelerationComp_);
-	//switcher.setMode(0);
-	fighter_->addInputComponent(gunComp1_);
+	switcher.setMode(0);
 
 	gunComp1_->registerObserver(bulletsManager);//registramos los observadores de los componentes de disparo
 	gunComp2_->registerObserver(bulletsManager);
@@ -32,7 +31,6 @@ FightersManager::FightersManager(SDLGame * game, Observer * bulletsManager) : Ga
 void FightersManager::handleInput(Uint32 time, const SDL_Event & event)
 {
 	if (fighter_->getActive()) {
-		//switcher.handleInput(time, event);
 		fighter_->handleInput(time, event);//si esta activo llamamos al metodo del padre
 	}
 }
@@ -56,6 +54,7 @@ void FightersManager::receive(Message* msg) {
 	switch (msg->id_) {
 	case ROUND_START://al comienzo de la ronda  ponemos velocidad del caza a 0 y la posicion inicial
 		fighter_->setVelocity(Vector2D(0, 0));
+		fighter_->setDirection(Vector2D(0, -1));
 		fighter_->setActive(true);
 		fighter_->setPosition(Vector2D(game_->getWindowWidth() / 2 - fighter_->getWidth() / 2, game_->getWindowHeight() / 2 - fighter_->getHeight() / 2));
 		break;
@@ -63,13 +62,12 @@ void FightersManager::receive(Message* msg) {
 		fighter_->setActive(false);
 		break;
 	case BADGE_ON:
-		fighter_->delInputComponent(gunComp1_); //provisonal, aun no estan implementadas las mejoras(badges)
-		fighter_->addInputComponent(gunComp2_);
+		fighter_->delRenderComponent(badgeRenderer_);
+		switcher.setMode(1);
 		fighter_->addRenderComponent(badgeRenderer_);
 		break;
 	case BADGE_OFF:
-		fighter_->delInputComponent(gunComp2_); //provisonal, aun no estan implementadas las mejoras(badges)
-		fighter_->addInputComponent(gunComp1_);
+		switcher.setMode(0);
 		fighter_->delRenderComponent(badgeRenderer_);
 		break;
 	}

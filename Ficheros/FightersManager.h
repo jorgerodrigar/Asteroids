@@ -32,6 +32,6 @@ private:
 	GunInputComponent* gunComp1_;
 	GunInputComponent* gunComp2_; //powerUp
 	BadgeRenderer* badgeRenderer_;//simbolo del powerup
-	//ComponentSwitcher switcher;
+	ComponentSwitcher switcher;
 };
 #endif /* FIGHTERSMANAGER_H_ */

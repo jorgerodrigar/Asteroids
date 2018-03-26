@@ -4,8 +4,6 @@
 void LiveRenderer::render(GameObject* o, Uint32 time){
 	GameManager* gm = static_cast<GameManager*>(o);
 
-	Texture* vida = gm->getGame()->getResources()->getImageTexture(Resources::chewbacca);
-
 	SDL_Rect destRect;
 	destRect.w = Tam*0.7;
 	destRect.h = Tam;
@@ -13,9 +11,8 @@ void LiveRenderer::render(GameObject* o, Uint32 time){
 	destRect.y = 0;
 
 	//pintamos las vidas
-	
 	for (int i = 0; i < gm->getLives(); i++) {
 		destRect.x += Tam;
-		vida->render(o->getGame()->getRenderer(), destRect);
+		gm->getGame()->getResources()->getImageTexture(Resources::chewbacca)->render(o->getGame()->getRenderer(), destRect);
 	}
 };

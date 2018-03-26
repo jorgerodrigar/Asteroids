@@ -29,7 +29,8 @@ public:
 		halcon,
 		asteroid,
 		chewbacca,
-
+		powerUp,
+		deathStar
 	};
 
 	// Text Messages - each is loaded as an instance of a texture

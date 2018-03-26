@@ -7,9 +7,11 @@
 class GunInputComponent : public InputComponent, public Observable{
 private:
 	SDL_Keycode shoot_;//tecla de disparo
-	int maxShots, actualShots = 0;
+	const int timeRefresh = 3000;
+	int maxShots;
 	int timeSinceLastShot = 0, timeSinceLastUpdate = 0;
 	bool tiempoIniciado = false;
+	double velocity = 0;
 public:
 	GunInputComponent(SDL_Keycode shoot, int maxShots) : shoot_(shoot), maxShots(maxShots) {}
 	~GunInputComponent(){}
