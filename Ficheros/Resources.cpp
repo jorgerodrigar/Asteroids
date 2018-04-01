@@ -19,10 +19,10 @@ std::vector<Resources::TextMsgInfo> Resources::textMsgs_ { { "Hello World", {
 		0xffffbbff) }, Resources::ARIAL24 } };
 
 std::vector<std::string> Resources::musicFiles_ { "sound/beat.wav",
-		"sound/cheer.wav", "sound/boooo.wav" };
+		"sound/cheer.wav", "sound/boooo.wav", "sound/imperial_march.wav" };
 
 std::vector<std::string> Resources::soundEffectFiles_ { "sound/wall_hit.wav",
-		"sound/paddle_hit.wav" };
+		"sound/paddle_hit.wav", "sound/GunShot.wav", "sound/explosion.wav", "sound/score_update.wav" };
 
 #include <iostream>
 

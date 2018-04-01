@@ -57,5 +57,7 @@ void StarWarsBulletsManager::receive(Message* msg) {
 		position = position + direction*(player->getHeight() / 2);
 		double velocity = std::max(player->getVelocity().magnitude() * 7, 2.0);
 		shoot(position, direction*velocity);//y se llama al metodo shoot con ellas
+		Message msg = { BULLET_CREATED };
+		send(&msg);
 	}
 }

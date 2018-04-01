@@ -1,12 +1,12 @@
 #pragma once
 #include "Observer.h"
+#include "SoundEffect.h"
+#include "Music.h"
 
-class SoundManager : public Observer {
+class SoundManager : public Container, public Observer {
 public:
-	SoundManager(SDLGame* game) :game_(game) {}
+	SoundManager(SDLGame* game) :Container(game) {}
 	virtual ~SoundManager() {}
 	virtual void receive(Message* msg);
-private:
-	SDLGame* game_;
 };
 
