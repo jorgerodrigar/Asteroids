@@ -14,6 +14,7 @@
 #include "BadgeRenderer.h"
 #include "ComponentSwitcher.h"
 
+//gestor de naves
 class FightersManager : public GameObject, public Observer {
 public:
 	FightersManager() {};

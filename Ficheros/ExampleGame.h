@@ -31,6 +31,7 @@ private:
 	bool exit_;
 	std::vector<GameObject*> actors_;
 
+	//managers
 	FightersManager nave;
 	StarWarsBulletsManager bulletManager;
 	AstroidsManager asteroidManager;

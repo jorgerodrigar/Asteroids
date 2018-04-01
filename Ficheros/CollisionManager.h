@@ -7,6 +7,7 @@
 #include "Collisions.h"
 #include "Messages.h"
 
+//gestor de colisiones
 class CollisionManager : public GameObject, public Observable {
 public:
 	CollisionManager(SDLGame* game, BulletsManager* bulletsManager,

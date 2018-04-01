@@ -24,7 +24,8 @@ FightersManager::FightersManager(SDLGame * game, Observer * bulletsManager) : Ga
 	fighter_->addInputComponent(accelerationComp_);
 	switcher.setMode(0);
 
-	gunComp1_->registerObserver(bulletsManager);//registramos los observadores de los componentes de disparo
+	//registramos los observadores de los componentes de disparo
+	gunComp1_->registerObserver(bulletsManager);
 	gunComp2_->registerObserver(bulletsManager);
 }
 

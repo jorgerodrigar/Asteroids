@@ -3,6 +3,7 @@
 #include "SoundEffect.h"
 #include "Music.h"
 
+//gestor de sonidos y musica
 class SoundManager : public Container, public Observer {
 public:
 	SoundManager(SDLGame* game) :Container(game) {}

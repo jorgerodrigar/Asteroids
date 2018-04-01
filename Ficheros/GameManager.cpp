@@ -1,6 +1,7 @@
 ﻿#include "GameManager.h"
 #include "BadgeTimer.h"
 
+//inicializamos los componentes que rigen el funcionamiento del juego (inicio/fin de rondas, hud, etc.)
 GameManager::GameManager(SDLGame* game): Container(game) {
 	gameCtrl_ = new GameCtrlInputComponent();
 	gameMsg_ = new GameMsgRenderer();

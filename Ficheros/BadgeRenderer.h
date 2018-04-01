@@ -2,6 +2,7 @@
 
 #include "RenderComponent.h"
 
+//pinta un sprite indicando que el jugador tiene el powerUp
 class BadgeRenderer : public RenderComponent {
 private:
 	int Tam = 53;

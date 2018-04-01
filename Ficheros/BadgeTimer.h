@@ -2,6 +2,7 @@
 #include "PhysicsComponent.h"
 #include "GameManager.h"
 
+//contador que quita el powerUp despues de un tiempo
 class BadgeTimer : public PhysicsComponent {
 public:
 	BadgeTimer() {}

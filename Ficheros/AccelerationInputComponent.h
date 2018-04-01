@@ -1,6 +1,7 @@
 #pragma once
 #include "InputComponent.h"
 
+//componente de aceleracion para la nave
 class AccelerationInputComponent : public InputComponent {
 private:
 	SDL_Keycode acc_;

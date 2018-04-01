@@ -8,6 +8,7 @@
 #include "LiveRenderercpp.h"
 class BadgeTimer;
 
+//gestor del juego
 class GameManager : public Container, public Observer, public Observable {
 public:
 	GameManager(SDLGame* game);
@@ -17,7 +18,7 @@ public:
 	bool isRunning() const { return running; }
 	void setRunning(bool run) {
 		if (running != run) {
-			running = run;
+			running = run;//dependiendo de si esta running o no se manda un mensaje de empezar/acabar ronda
 			Message m = { running ? ROUND_START : ROUND_OVER };
 			send(&m);
 		}

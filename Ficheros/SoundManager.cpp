@@ -1,5 +1,6 @@
 #include "SoundManager.h"
 
+//dependiendo del mensaje recibido reproducimos el efecto o musica correspondiente
 void SoundManager::receive(Message* msg) {
 	switch (msg->id_) {
 	case BULLET_CREATED:
@@ -12,10 +13,10 @@ void SoundManager::receive(Message* msg) {
 		game_->getResources()->getSoundEffect(Resources::Explosion)->play();
 		break;
 	case ROUND_START:
-		game_->getResources()->getSoundEffect(Resources::Wall_Hit)->play();
+		game_->getResources()->getMusic(Resources::ImperialMarch)->play();
 		break;
 	case ROUND_OVER:
-		game_->getResources()->getMusic(Resources::ImperialMarch)->play();
+		game_->getResources()->getMusic(Resources::ImperialMarch)->pause();
 		break;
 	}
 }
