@@ -7,7 +7,6 @@ void SoundManager::receive(Message* msg) {
 		break;
 	case BULLET_ASTROID_COLLISION:
 		game_->getResources()->getSoundEffect(Resources::Explosion)->play();
-		game_->getResources()->getSoundEffect(Resources::ScoreUpdate)->play();
 		break;
 	case ASTROID_FIGHTER_COLLISION:
 		game_->getResources()->getSoundEffect(Resources::Explosion)->play();

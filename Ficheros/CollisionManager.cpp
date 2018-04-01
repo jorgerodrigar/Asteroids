@@ -7,7 +7,7 @@ void CollisionManager::update(Uint32 time) {
 
 	//colisiones entre nave y asteroides
 	for (int i = 0; i < astroids.size(); i++) {
-		if (astroids[i]->getActive() && Collisions::collidesWithRotation(fighter, astroids[i])) {
+		if ((astroids[i]->getActive() && fighter->getActive()) && Collisions::collidesWithRotation(fighter, astroids[i])) {
 			AstroidFighterCollision msg = { astroids[i], fighter };
 			send(&msg);
 		}
