@@ -16,6 +16,7 @@
 
 class FightersManager : public GameObject, public Observer {
 public:
+	FightersManager() {};
 	FightersManager(SDLGame* game, Observer* bulletsManager);
 	virtual ~FightersManager() {}
 	virtual void handleInput(Uint32 time, const SDL_Event& event);

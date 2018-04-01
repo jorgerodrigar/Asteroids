@@ -31,12 +31,12 @@ private:
 	bool exit_;
 	std::vector<GameObject*> actors_;
 
-	FightersManager* nave;
-	StarWarsBulletsManager* bulletManager;
-	AstroidsManager* asteroidManager;
-	CollisionManager* colisionManager;
-	GameManager* gameManager;
-	SoundManager* soundManager;
+	FightersManager nave;
+	StarWarsBulletsManager bulletManager;
+	AstroidsManager asteroidManager;
+	CollisionManager colisionManager;
+	GameManager gameManager;
+	SoundManager soundManager;
 };
 
 #endif /* EXAMPLEGAME_H_ */
