@@ -8,6 +8,7 @@
 #include "CollisionManager.h"
 #include "GameManager.h"
 #include "SoundManager.h"
+#include "checkML.h"
 
 class ExampleGame: public SDLGame {
 

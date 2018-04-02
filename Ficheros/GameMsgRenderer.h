@@ -2,6 +2,7 @@
 #define GAMEMSGRENDERER_H_
 
 #include "RenderComponent.h"
+#include "checkML.h"
 
 /*
  *

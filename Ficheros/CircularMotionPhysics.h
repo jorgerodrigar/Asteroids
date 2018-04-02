@@ -1,5 +1,7 @@
 #pragma once
 #include "PhysicsComponent.h"
+#include "checkML.h"
+
 class CircularMotionPhysics :
 	public PhysicsComponent
 {

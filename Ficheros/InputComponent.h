@@ -2,6 +2,7 @@
 #define INPUTCOMPONENT_H_
 
 #include "GameObject.h"
+#include "checkML.h"
 
 /*
  *

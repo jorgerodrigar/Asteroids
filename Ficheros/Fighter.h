@@ -2,6 +2,7 @@
 #define FIGHTER_H_
 
 #include "Container.h"
+#include "checkML.h"
 
 //clase que controlara el jugador, la nave
 class Fighter : public Container {

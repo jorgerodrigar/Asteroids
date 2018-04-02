@@ -2,6 +2,7 @@
 #define ASTEROID_H_
 
 #include "Container.h"
+#include "checkML.h"
 
 //asteroides que flotan por la pantalla
 class Asteroid : public Container {

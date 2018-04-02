@@ -6,6 +6,7 @@
 #include "FightersManager.h"
 #include "Collisions.h"
 #include "Messages.h"
+#include "checkML.h"
 
 //gestor de colisiones
 class CollisionManager : public GameObject, public Observable {

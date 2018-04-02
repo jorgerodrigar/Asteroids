@@ -1,5 +1,6 @@
 #pragma once
 #include "InputComponent.h"
+#include "checkML.h"
 
 //componente de aceleracion para la nave
 class AccelerationInputComponent : public InputComponent {

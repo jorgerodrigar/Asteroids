@@ -1,6 +1,7 @@
 #pragma once
 
 #include "RenderComponent.h"
+#include "checkML.h"
 
 //pinta un sprite indicando que el jugador tiene el powerUp
 class BadgeRenderer : public RenderComponent {

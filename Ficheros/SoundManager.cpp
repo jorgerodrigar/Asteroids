@@ -13,9 +13,10 @@ void SoundManager::receive(Message* msg) {
 		game_->getResources()->getSoundEffect(Resources::Explosion)->play();
 		break;
 	case ROUND_START:
-		game_->getResources()->getMusic(Resources::ImperialMarch)->play();
+		game_->getResources()->getMusic(Resources::ImperialMarch)->play(3);
 		break;
 	case ROUND_OVER:
+		game_->getResources()->getMusic(Resources::ImperialMarch)->pause();
 		break;
 	}
 }

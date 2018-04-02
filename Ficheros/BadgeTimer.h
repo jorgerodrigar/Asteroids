@@ -1,6 +1,7 @@
 #pragma once
 #include "PhysicsComponent.h"
 #include "GameManager.h"
+#include "checkML.h"
 
 //contador que quita el powerUp despues de un tiempo
 class BadgeTimer : public PhysicsComponent {

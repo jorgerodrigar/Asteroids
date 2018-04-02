@@ -44,6 +44,7 @@ Resources::~Resources() {
 	closeFonts();
 	closeMusic();
 	closeSoundEffects();
+	closeTextTextures();
 }
 
 void Resources::setImageTextures(std::vector<std::string> textures) {

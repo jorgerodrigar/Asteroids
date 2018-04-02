@@ -2,6 +2,7 @@
 #define LIVERENDERERCPP_H_
 
 #include "RenderComponent.h"
+#include "checkML.h"
 
 class LiveRenderer : public RenderComponent {
 private:

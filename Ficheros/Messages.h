@@ -3,6 +3,8 @@
 
 #include "Asteroid.h"
 #include "Bullet.h"
+#include "checkML.h"
+
 class Fighter;
 
 enum MessageId {

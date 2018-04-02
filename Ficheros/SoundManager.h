@@ -2,6 +2,7 @@
 #include "Observer.h"
 #include "SoundEffect.h"
 #include "Music.h"
+#include "checkML.h"
 
 //gestor de sonidos y musica
 class SoundManager : public Container, public Observer {

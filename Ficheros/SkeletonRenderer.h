@@ -2,6 +2,7 @@
 #define SKELETONTENDERER_H_
 
 #include "RenderComponent.h"
+#include "checkML.h"
 
 class SkeletonRendered : public RenderComponent {
 public:

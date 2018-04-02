@@ -6,6 +6,7 @@
 #include "GameMsgRenderer.h"
 #include "ScoreRenderer.h"
 #include "LiveRenderercpp.h"
+#include "checkML.h"
 class BadgeTimer;
 
 //gestor del juego

@@ -13,6 +13,7 @@
 #include "GunInputComponent.h"
 #include "BadgeRenderer.h"
 #include "ComponentSwitcher.h"
+#include "checkML.h"
 
 //gestor de naves
 class FightersManager : public GameObject, public Observer {

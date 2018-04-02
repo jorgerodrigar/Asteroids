@@ -2,6 +2,7 @@
 #include "GameObject.h"
 #include "Observable.h"
 #include "Observer.h"
+#include "checkML.h"
 
 //clase gestora de las balas, puede mandar y recibir mensajes (abstracta pura)
 class BulletsManager:public Observable, public Observer {

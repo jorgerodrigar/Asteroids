@@ -2,6 +2,7 @@
 #include "InputComponent.h"
 #include "Messages.h"
 #include "Observable.h"
+#include "checkML.h"
 
 //componente que se encarga de mandar un mensaje a StarWarsBulletsManager cuando pulsamos la tecla de disparo
 class GunInputComponent : public InputComponent, public Observable{

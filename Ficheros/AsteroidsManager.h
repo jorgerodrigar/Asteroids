@@ -6,6 +6,7 @@
 #include "ImageRenderer.h"
 #include "CircularMotionPhysics.h"
 #include "RotationPhysics.h"
+#include "checkML.h"
 
 //gestor de asteroides
 class AstroidsManager : public GameObject, public Observer, public Observable {
