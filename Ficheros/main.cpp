@@ -7,6 +7,6 @@ int main(int ac, char** av) {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	ExampleGame g;
 	g.start();
-	//g.closeSDL();
+	g.closeSDL();
 	return 0;
 }

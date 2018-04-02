@@ -53,7 +53,6 @@ void SDLGame::closeSDL() {
 	window_ = nullptr;
 
 	Mix_Quit();
-	TTF_Quit();
 	IMG_Quit();
 
 	SDL_Quit();
