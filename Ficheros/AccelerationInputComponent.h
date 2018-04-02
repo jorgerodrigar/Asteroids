@@ -12,6 +12,7 @@ private:
 	double reductionFact;
 
 public:
+	AccelerationInputComponent() {}
 	AccelerationInputComponent(SDL_Keycode acelerar, SDL_Keycode desacelerar, double thrust, double velLimit, double reduction);
 	~AccelerationInputComponent();
 	virtual void handleInput(GameObject* o, Uint32 time, const SDL_Event& event);

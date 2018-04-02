@@ -9,6 +9,7 @@
  */
 class ImageRenderer: public RenderComponent {
 public:
+	ImageRenderer():image_(nullptr) {};
 	ImageRenderer(Texture* image, SDL_Rect clip);
 	virtual ~ImageRenderer();
 	virtual void render(GameObject* o, Uint32 time);

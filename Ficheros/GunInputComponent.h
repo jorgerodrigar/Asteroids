@@ -14,6 +14,7 @@ private:
 	bool tiempoIniciado = false;
 	double velocity = 0;
 public:
+	GunInputComponent() {};
 	GunInputComponent(SDL_Keycode shoot, int maxShots) : shoot_(shoot), maxShots(maxShots) {}
 	~GunInputComponent(){}
 	virtual void handleInput(GameObject* o, Uint32 time, const SDL_Event& event);

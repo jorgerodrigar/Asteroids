@@ -1,19 +1,19 @@
 ﻿#include "GameManager.h"
-#include "BadgeTimer.h"
+
 
 //inicializamos los componentes que rigen el funcionamiento del juego (inicio/fin de rondas, hud, etc.)
 GameManager::GameManager(SDLGame* game): Container(game) {
-	gameCtrl_ = new GameCtrlInputComponent();
-	gameMsg_ = new GameMsgRenderer();
-	scoreRenderer_ = new ScoreRenderer();
-	livesRenderer_ = new LiveRenderer();
-	badgeTimer_ = new BadgeTimer();
+	gameCtrl_ = GameCtrlInputComponent();
+	gameMsg_ =  GameMsgRenderer();
+	scoreRenderer_ = ScoreRenderer();
+	livesRenderer_ = LiveRenderer();
+	badgeTimer_ = BadgeTimer();
 
-	addInputComponent(gameCtrl_);
-	addRenderComponent(gameMsg_);
-	addRenderComponent(scoreRenderer_);
-	addRenderComponent(livesRenderer_);
-	addPhysicsComponent(badgeTimer_);
+	addInputComponent(&gameCtrl_);
+	addRenderComponent(&gameMsg_);
+	addRenderComponent(&scoreRenderer_);
+	addRenderComponent(&livesRenderer_);
+	addPhysicsComponent(&badgeTimer_);
 }
 
 //recibidor de mensajes
@@ -43,7 +43,7 @@ void GameManager::setBadge(bool b) {
 	if (b) {
 		Message msg = { BADGE_ON };
 		send(&msg);
-		static_cast<BadgeTimer*>(badgeTimer_)->start(10000);
+		static_cast<BadgeTimer*>(&badgeTimer_)->start(10000);
 	}
 	else {
 		Message msg = { BADGE_OFF };

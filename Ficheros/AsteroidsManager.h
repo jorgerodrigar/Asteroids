@@ -18,9 +18,9 @@ public:
 		rect.w = 145;
 		rect.h = 130;
 		//componentes que tendran todos los asteroides
-		astroidImage_ = new ImageRenderer(game->getResources()->getImageTexture(Resources::asteroid), rect);
-		circularPhysics_ = new CircularMotionPhysics();
-		rotationPhysics_ = new RotationPhysics(2.0);
+		astroidImage_ =  ImageRenderer(game->getResources()->getImageTexture(Resources::asteroid), rect);
+		circularPhysics_ =  CircularMotionPhysics();
+		rotationPhysics_ =  RotationPhysics(2.0);
 		numOfAstroids_ = 0;
 	}
 	virtual ~AstroidsManager(){
@@ -36,9 +36,9 @@ private:
 	void initAsteroids();
 
 	vector<Asteroid*> astroids_;//vector de todos los asteroides del juego (activos e inactivos)
-	RenderComponent* astroidImage_;
-	PhysicsComponent* circularPhysics_;
-	PhysicsComponent* rotationPhysics_;
+	ImageRenderer astroidImage_;
+	CircularMotionPhysics circularPhysics_;
+	RotationPhysics rotationPhysics_;
 	int numOfAstroids_, numAstroidsInicial = 5;
 };
 

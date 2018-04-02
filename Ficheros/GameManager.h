@@ -7,13 +7,14 @@
 #include "ScoreRenderer.h"
 #include "LiveRenderercpp.h"
 #include "checkML.h"
-class BadgeTimer;
+#include "BadgeTimer.h"
 
 //gestor del juego
 class GameManager : public Container, public Observer, public Observable {
 public:
 	GameManager(SDLGame* game);
-	virtual ~GameManager() {};
+	virtual ~GameManager() {
+	};
 	bool isGameOver() const { return gameOver; }
 	int getLives() const { return vidas; }
 	bool isRunning() const { return running; }
@@ -33,9 +34,9 @@ public:
 private:
 	bool gameOver = false, running = false;
 	int vidas = 3, score = 0;
-	RenderComponent* scoreRenderer_;
-	RenderComponent* livesRenderer_;
-	InputComponent* gameCtrl_;
-	RenderComponent* gameMsg_;
-	PhysicsComponent* badgeTimer_;
+	ScoreRenderer scoreRenderer_;
+	LiveRenderer livesRenderer_;
+	GameCtrlInputComponent gameCtrl_;
+	GameMsgRenderer gameMsg_;
+	BadgeTimer badgeTimer_;
 };

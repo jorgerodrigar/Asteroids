@@ -1,6 +1,5 @@
 #pragma once
 #include "PhysicsComponent.h"
-#include "GameManager.h"
 #include "checkML.h"
 
 //contador que quita el powerUp despues de un tiempo
@@ -8,12 +7,7 @@ class BadgeTimer : public PhysicsComponent {
 public:
 	BadgeTimer() {}
 	virtual ~BadgeTimer() {}
-	virtual void update(GameObject* o, Uint32 time) {
-		if (on_ && timeInterval_ + timeOn_ < time) {
-			on_ = false;
-			static_cast<GameManager*>(o)->setBadge(false);
-		}
-	}
+	virtual void update(GameObject* o, Uint32 time);
 	void start(Uint32 timeInterval) {
    		on_ = true;
 		timeOn_ = SDL_GetTicks();

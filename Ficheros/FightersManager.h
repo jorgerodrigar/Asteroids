@@ -18,23 +18,22 @@
 //gestor de naves
 class FightersManager : public GameObject, public Observer {
 public:
-	FightersManager() {};
 	FightersManager(SDLGame* game, Observer* bulletsManager);
 	virtual ~FightersManager() {}
 	virtual void handleInput(Uint32 time, const SDL_Event& event);
 	virtual void update(Uint32 time);
 	virtual void render(Uint32 time);
-	Fighter* getFighter() { return fighter_; }
+	Fighter* getFighter() { return &fighter_; }
 	virtual void receive(Message* msg);
 private:
-	Fighter* fighter_;
-	CircularMotionPhysics* circulrMotoionComp_;
-	AccelerationInputComponent* accelerationComp_;
-	ImageRenderer* renderComp_;
-	RotationInputComponent* rotationComp_;
-	GunInputComponent* gunComp1_;
-	GunInputComponent* gunComp2_; //powerUp
-	BadgeRenderer* badgeRenderer_;//simbolo del powerup
+	Fighter fighter_;
+	CircularMotionPhysics circulrMotoionComp_;
+	AccelerationInputComponent accelerationComp_;
+	ImageRenderer renderComp_;
+	RotationInputComponent rotationComp_;
+	GunInputComponent gunComp1_ = GunInputComponent(SDLK_SPACE, 5);
+	GunInputComponent gunComp2_ = GunInputComponent(SDLK_SPACE, 100); //powerUp
+	BadgeRenderer badgeRenderer_;//simbolo del powerup
 	ComponentSwitcher switcher;
 };
 #endif /* FIGHTERSMANAGER_H_ */

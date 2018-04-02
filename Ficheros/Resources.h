@@ -82,6 +82,7 @@ private:
 
 public:
 
+	Resources(){}
 	Resources(SDLGame* game);
 	virtual ~Resources();
 

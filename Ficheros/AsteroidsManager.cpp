@@ -41,10 +41,11 @@ Asteroid* AstroidsManager::getAstroid(){
 	if (i < astroids_.size()) return astroids_[i];
 	else {//si no, creamos uno nuevo y lo devolvemos
 		Asteroid* asteroid = new Asteroid(game_);
-		asteroid->addRenderComponent(astroidImage_);
-		asteroid->addPhysicsComponent(circularPhysics_);
-		asteroid->addPhysicsComponent(rotationPhysics_);
+		asteroid->addRenderComponent(&astroidImage_);
+		asteroid->addPhysicsComponent(&circularPhysics_);
+		asteroid->addPhysicsComponent(&rotationPhysics_);
 		astroids_.push_back(asteroid);
+		asteroid = nullptr;
 		return astroids_[astroids_.size() - 1];
 	}
 }

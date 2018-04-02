@@ -19,6 +19,7 @@ public:
 	int getWindowWidth() const; // returns the window width
 	int getWindowHeight() const; // returns the window height
 	const Resources* getResources() const; // returns a pointer to the resources
+	void closeSDL(); // close all SDL resources
 
 	// abstract methods to be implemented by subclasses
 	virtual void start() = 0; // start the game
@@ -26,7 +27,6 @@ public:
 
 private:
 	void initSDL(); // initialize SDL (ttf, mixer, image, create window and renderer, etc)
-	void closeSDL(); // close all SDL resources
 	void initResources(); // initialize the SDLResources object with the data at the top of this file
 	void closeResources(); // close the  SDLResources object (frees all memory)
 

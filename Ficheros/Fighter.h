@@ -7,6 +7,7 @@
 //clase que controlara el jugador, la nave
 class Fighter : public Container {
 public:
+	Fighter() {}
 	Fighter(SDLGame* game, int id);
 	virtual ~Fighter(){}
 	int getId() { return id_; }//devuelve el id de la nave

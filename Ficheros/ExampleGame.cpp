@@ -67,6 +67,7 @@ void ExampleGame::stop() {
 void ExampleGame::handleInput(Uint32 time) {
 	SDL_Event event;
 	while (SDL_PollEvent(&event)) {
+		if (event.type == SDL_QUIT)stop();
 		if (event.type == SDL_KEYDOWN) {
 			switch (event.key.keysym.sym) {
 			case SDLK_ESCAPE:

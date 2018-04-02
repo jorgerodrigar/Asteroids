@@ -12,8 +12,8 @@ using namespace std;
 class StarWarsBulletsManager : public GameObject, public BulletsManager{
 private:
 	std::vector<Bullet*> bullets;//vector de balas en escena (activas o inactivas)
-	RenderComponent* bulletRenderer_;//componentes que llevan todas las balas
-	PhysicsComponent* bulletPhysics_;
+	FillRectRenderer bulletRenderer_;//componentes que llevan todas las balas
+	BasicMotionPhysics bulletPhysics_;
 	Fighter* player;//puntero a la nave jugador para obtener su vel y pos y darsela a las nuevas balas
 	
 	Bullet* getBullet();//devuelve la primera bala inactiva del vector y si no hay crea una nueva y la devuelve
@@ -21,8 +21,8 @@ private:
 	virtual void shoot(Vector2D position, Vector2D velocity);//dispara una bala
 public:
 	StarWarsBulletsManager(SDLGame* game): GameObject(game) {
-		bulletRenderer_ = new FillRectRenderer();//inicializamos todos los atributos
-		bulletPhysics_ = new BasicMotionPhysics();
+		bulletRenderer_ = FillRectRenderer();//inicializamos todos los atributos
+		bulletPhysics_ = BasicMotionPhysics();
 	}
 	~StarWarsBulletsManager() {//borramos todas las balas
 		for (int i = 0; i < bullets.size();i++) delete(bullets[i]);

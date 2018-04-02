@@ -28,9 +28,10 @@ Bullet* StarWarsBulletsManager::getBullet() {
 	if (i < bullets.size()) return bullets[i];
 	else {
 		Bullet* bullet = new Bullet(this->getGame());
-		bullet->addRenderComponent(bulletRenderer_);
-		bullet->addPhysicsComponent(bulletPhysics_);
+		bullet->addRenderComponent(&bulletRenderer_);
+		bullet->addPhysicsComponent(&bulletPhysics_);
 		bullets.push_back(bullet);
+		bullet = nullptr;
 		return bullets[bullets.size() - 1];
 	}
 }
