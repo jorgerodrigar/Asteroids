@@ -45,7 +45,7 @@ void StarWarsBulletsManager::receive(Message* msg) {
 
 	else if (msg->id_ == BULLET_ASTROID_COLLISION) {//cuando choca con un asteroide o una nave pone esa bala a inactivo
 		BulletAstroidCollision* m = static_cast<BulletAstroidCollision*>(msg);
-		m->bullet_->setActive(false);
+		if(!super)m->bullet_->setActive(false);
 	}
 	else if (msg->id_ == BULLET_FIGHTER_COLLISION){
 		BulletFighterCollision* m = static_cast<BulletFighterCollision*>(msg);
@@ -53,12 +53,21 @@ void StarWarsBulletsManager::receive(Message* msg) {
 	}
 
 	else if (msg->id_ == FIGHTER_SHOOT) {//cuando se manda disparar (desde el componente GunInput) se cogen la pos y la vel del jugador
-		Vector2D position = { player->getPosition().getX() + player->getWidth() / 2, player->getPosition().getY() + player->getHeight() / 2 };
-		Vector2D direction(-player->getDirection().getX(), player->getDirection().getY());
-		position = position + direction*(player->getHeight() / 2);
-		double velocity = std::max(player->getVelocity().magnitude() * 7, 2.0);
-		shoot(position, direction*velocity);//y se llama al metodo shoot con ellas
-		Message msg = { BULLET_CREATED };
-		send(&msg);
+
+		int rotation = 360 / numBalas;
+		rotation = asin(player->getDirection().getY());
+		for (int i = 0; i < numBalas; i++) {
+			Vector2D position = { player->getPosition().getX() + player->getWidth() / 2, player->getPosition().getY() + player->getHeight() / 2 };
+ 			Vector2D direction(sin(rotation*i*(M_PI/180)), -cos(rotation*i*M_PI / 180 + M_PI/2));
+			position = position + direction*(player->getHeight() / 2);
+			double velocity = std::max(player->getVelocity().magnitude() * 7, 2.0);
+			shoot(position, direction*velocity);//y se llama al metodo shoot con ellas
+			Message msg = { BULLET_CREATED };
+			send(&msg); 
+		}
 	}
+	else if (msg->id_ == SUPER_ON)super = true;
+	else if (msg->id_ == SUPER_OFF)super = false;
+	else if (msg->id_ == MULTI_ON)numBalas = 6;
+	else if (msg->id_ == MULTI_OFF)numBalas = 1;
 }

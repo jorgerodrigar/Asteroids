@@ -18,7 +18,11 @@ enum MessageId {
 	BULLET_CREATED,
 	NO_MORE_ATROIDS,
 	BADGE_ON,
-	BADGE_OFF
+	BADGE_OFF,
+	SUPER_ON,
+	SUPER_OFF,
+	MULTI_ON,
+	MULTI_OFF
 };
 
 struct Message {

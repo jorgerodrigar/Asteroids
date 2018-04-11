@@ -28,9 +28,14 @@ public:
 	void setGameOver(bool Gover) { if (gameOver != Gover) gameOver = Gover; }
 	int getScore() const { return score; }
 	void setScore(int i) { score = i; }
-	void setBadge(bool b);
+	void setBadge(bool b, Message msg);
 	void resetGame() { setScore(0); vidas = 3; gameOver = false; }//reinicia el juego (llamado desde InputCtrl cuando pulsamos una tecla y se ha acabado la partida)
 	void receive(Message* msg);
+	void setAllBadgesFalse() {
+		setBadge(false, BADGE_OFF);
+		setBadge(false, SUPER_OFF);
+		setBadge(false, MULTI_OFF);
+	}
 private:
 	bool gameOver = false, running = false;
 	int vidas = 3, score = 0;

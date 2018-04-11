@@ -15,6 +15,8 @@ private:
 	FillRectRenderer bulletRenderer_;//componentes que llevan todas las balas
 	BasicMotionPhysics bulletPhysics_;
 	Fighter* player;//puntero a la nave jugador para obtener su vel y pos y darsela a las nuevas balas
+	bool super = false;
+	int numBalas = 1;
 	
 	Bullet* getBullet();//devuelve la primera bala inactiva del vector y si no hay crea una nueva y la devuelve
 	virtual void receive(Message* msg);//recibe mensajes
