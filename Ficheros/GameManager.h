@@ -37,7 +37,7 @@ public:
 		setBadge(false, MULTI_OFF);
 	}
 private:
-	bool gameOver = false, running = false;
+	bool gameOver = false, running = false, badge = false;
 	int vidas = 3, score = 0, scoreRound = 0;
 	ScoreRenderer scoreRenderer_;
 	LiveRenderer livesRenderer_;
