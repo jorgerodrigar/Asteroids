@@ -22,14 +22,16 @@ void GameManager::receive(Message* msg) {
 	case ASTROID_FIGHTER_COLLISION://si un asteroide choca con la nave
 		if (running)vidas--;//se restan vidas, se desactiva el powerup y se acaba la ronda
 		setAllBadgesFalse();
+		scoreRound = 0; cout << scoreRound;
 		setRunning(false);
 		if (vidas == 0)setGameOver(true);//si no tienes vidas se acaba la partida
 		break;
 	case BULLET_ASTROID_COLLISION://si una bala choca con un asteroide
 		score++;//se suman los puntos
-		if (score % 30 == 0)setBadge(true, MULTI_ON);//cada diez puntos se activa el powerup
-		else if (score % 20 == 0)setBadge(true, SUPER_ON);
-		else if (score % 10 == 0)setBadge(true, BADGE_ON);
+		scoreRound++; cout << scoreRound;
+		if (scoreRound % 30 == 0)setBadge(true, MULTI_ON);//se activan powerUps dependiendo de los puntos que llevemos
+		else if (scoreRound % 20 == 0)setBadge(true, SUPER_ON);
+		else if (scoreRound % 10 == 0)setBadge(true, BADGE_ON);
 		break;
 	case NO_MORE_ATROIDS://si no quedan asteroides
 		setAllBadgesFalse();

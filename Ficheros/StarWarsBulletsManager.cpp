@@ -45,28 +45,28 @@ void StarWarsBulletsManager::receive(Message* msg) {
 
 	else if (msg->id_ == BULLET_ASTROID_COLLISION) {//cuando choca con un asteroide o una nave pone esa bala a inactivo
 		BulletAstroidCollision* m = static_cast<BulletAstroidCollision*>(msg);
-		if(!super)m->bullet_->setActive(false);
+		if (!super)m->bullet_->setActive(false);
 	}
-	else if (msg->id_ == BULLET_FIGHTER_COLLISION){
+	else if (msg->id_ == BULLET_FIGHTER_COLLISION) {
 		BulletFighterCollision* m = static_cast<BulletFighterCollision*>(msg);
 		m->bullet_->setActive(false);
 	}
 
 	else if (msg->id_ == FIGHTER_SHOOT) {//cuando se manda disparar (desde el componente GunInput) se cogen la pos y la vel del jugador
-			float rotation = 360/numBalas;
- 			float angle = acos(player->getDirection().getX());//guardamos el angulo del jugador
-			angle = copysignf(angle, player->getDirection().getY());
-			for (int i = 0; i < numBalas; i++) {//para cada bala
-					float cosen = (float)cos((rotation * (i) + 135 - angle * 180 / M_PI)*M_PI / 180);//la giramos el angulo que corresponda
-					float sen = (float)sin((rotation * (i) + 135 - angle * 180 / M_PI)*M_PI / 180);
-					Vector2D position = { player->getPosition().getX() + player->getWidth() / 2, player->getPosition().getY() + player->getHeight() / 2 };//le damos posicion y direccion
-					Vector2D direction(cosen - sen, sen + cosen);
-					position = position + direction*(player->getHeight() / 2);
-					double velocity = std::max(player->getVelocity().magnitude() * 7, 2.0);
-					shoot(position, direction*velocity);//y se llama al metodo shoot con ellas
-					Message msg = { BULLET_CREATED };
-					send(&msg);
-			}
+		float rotation = 360 / numBalas;
+		float angle = acos(player->getDirection().getX());//guardamos el angulo del jugador
+		angle = copysignf(angle, player->getDirection().getY());
+		for (int i = 0; i < numBalas; i++) {//para cada bala
+			float cosen = (float)cos((rotation * (i)+135 - angle * 180 / M_PI)*M_PI / 180);//la giramos el angulo que corresponda
+			float sen = (float)sin((rotation * (i)+135 - angle * 180 / M_PI)*M_PI / 180);
+			Vector2D position = { player->getPosition().getX() + player->getWidth() / 2, player->getPosition().getY() + player->getHeight() / 2 };//le damos posicion y direccion
+			Vector2D direction(cosen - sen, sen + cosen);
+			position = position + direction*(player->getHeight() / 2);
+			double velocity = std::max(player->getVelocity().magnitude() * 7, 2.0);
+			shoot(position, direction*velocity);//y se llama al metodo shoot con ellas
+			Message msg = { BULLET_CREATED };
+			send(&msg);
+		}
 	}
 	else if (msg->id_ == SUPER_ON)super = true;//se pone la mejora super
 	else if (msg->id_ == SUPER_OFF)super = false;//se quita

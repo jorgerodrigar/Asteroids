@@ -38,7 +38,7 @@ public:
 	}
 private:
 	bool gameOver = false, running = false;
-	int vidas = 3, score = 0;
+	int vidas = 3, score = 0, scoreRound = 0;
 	ScoreRenderer scoreRenderer_;
 	LiveRenderer livesRenderer_;
 	GameCtrlInputComponent gameCtrl_;
