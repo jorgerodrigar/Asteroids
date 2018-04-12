@@ -16,7 +16,7 @@ private:
 	BasicMotionPhysics bulletPhysics_;
 	Fighter* player;//puntero a la nave jugador para obtener su vel y pos y darsela a las nuevas balas
 	bool super = false;
-	int numBalas = 1;
+	int balasIni = 1, numBalas = balasIni, balasBadge = 6;//numero de balas que dispara inicialmente, numero de balas que dispara actualmente, y numero de balas que dispara con la mejora
 	
 	Bullet* getBullet();//devuelve la primera bala inactiva del vector y si no hay crea una nueva y la devuelve
 	virtual void receive(Message* msg);//recibe mensajes

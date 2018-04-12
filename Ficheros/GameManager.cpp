@@ -20,14 +20,14 @@ GameManager::GameManager(SDLGame* game): Container(game) {
 void GameManager::receive(Message* msg) {
 	switch (msg->id_) {
 	case ASTROID_FIGHTER_COLLISION://si un asteroide choca con la nave
-		/*if (running)vidas--;//se restan vidas, se desactiva el powerup y se acaba la ronda
+		if (running)vidas--;//se restan vidas, se desactiva el powerup y se acaba la ronda
 		setAllBadgesFalse();
 		setRunning(false);
-		if (vidas == 0)setGameOver(true);//si no tienes vidas se acaba la partida*/
+		if (vidas == 0)setGameOver(true);//si no tienes vidas se acaba la partida
 		break;
 	case BULLET_ASTROID_COLLISION://si una bala choca con un asteroide
 		score++;//se suman los puntos
-		if (score % 1 == 0)setBadge(true, MULTI_ON);//cada diez puntos se activa el powerup
+		if (score % 30 == 0)setBadge(true, MULTI_ON);//cada diez puntos se activa el powerup
 		else if (score % 20 == 0)setBadge(true, SUPER_ON);
 		else if (score % 10 == 0)setBadge(true, BADGE_ON);
 		break;

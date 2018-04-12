@@ -31,7 +31,10 @@ public:
 		asteroid,
 		chewbacca,
 		powerUp,
-		deathStar
+		deathStar,
+		laserUp,
+		superUp,
+		multiUp
 	};
 
 	// Text Messages - each is loaded as an instance of a texture
