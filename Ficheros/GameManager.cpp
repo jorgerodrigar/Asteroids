@@ -20,31 +20,33 @@ GameManager::GameManager(SDLGame* game): Container(game) {
 void GameManager::receive(Message* msg) {
 	switch (msg->id_) {
 	case ASTROID_FIGHTER_COLLISION://si un asteroide choca con la nave
-		if (running)vidas--;//se restan vidas, se desactiva el powerup y se acaba la ronda
+		if (running)vidas--;//se restan vidas, se desactivan los powerup y se acaba la ronda
 		setAllBadgesFalse();
-		scoreRound = 0; cout << scoreRound;
+		scoreRound = 0;
+		actualBadge = 0;
 		setRunning(false);
 		if (vidas == 0)setGameOver(true);//si no tienes vidas se acaba la partida
 		break;
 	case BULLET_ASTROID_COLLISION://si una bala choca con un asteroide
 		score++;//se suman los puntos
-		if(!badge) scoreRound++;
-		if (scoreRound % 30 == 0)setBadge(true, MULTI_ON);//se activan powerUps dependiendo de los puntos que llevemos
-		else if (scoreRound % 20 == 0)setBadge(true, SUPER_ON);
-		else if (scoreRound % 10 == 0)setBadge(true, BADGE_ON);
+		scoreRound++;
+		if (scoreRound % 10 == 0) {
+			setBadge(true, (MessageId)(BEGINBADGES + actualBadge * 2));//se activan powerUps dependiendo de los puntos que llevemos
+			if (actualBadge == NUMBADGES - 1) actualBadge = 0;//si el badge que tocaba era el ultimo, volvemos a empezar por el primero
+			else actualBadge++;
+		}
 		break;
 	case NO_MORE_ATROIDS://si no quedan asteroides
 		setAllBadgesFalse();
 		setRunning(false);
 		setGameOver(true);
 		break;
-		
 	}
 }
 
 //activa o desactiva el powerup
 void GameManager::setBadge(bool b, Message msg) {
-	send(&msg);
-	badge = b;
+	setAllBadgesFalse();//desactiva primero todos para no tener varios a la vez
+	send(&msg);//se activa el correspondiente y se inicia el contador de tiempo
 	if (b) static_cast<BadgeTimer*>(&badgeTimer_)->start(10000);
 }

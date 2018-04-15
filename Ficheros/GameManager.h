@@ -8,6 +8,7 @@
 #include "LiveRenderercpp.h"
 #include "checkML.h"
 #include "BadgeTimer.h"
+#include <list>
 
 //gestor del juego
 class GameManager : public Container, public Observer, public Observable {
@@ -31,17 +32,22 @@ public:
 	void setBadge(bool b, Message msg);
 	void resetGame() { setScore(0); vidas = 3; gameOver = false; }//reinicia el juego (llamado desde InputCtrl cuando pulsamos una tecla y se ha acabado la partida)
 	void receive(Message* msg);
-	void setAllBadgesFalse() {
-		setBadge(false, BADGE_OFF);
-		setBadge(false, SUPER_OFF);
-		setBadge(false, MULTI_OFF);
+	//desactiva todos los badges
+	void setAllBadgesFalse() {//recorre el enumerador de mensajes y manda todos los correspondientes a desactivar badges
+		for (int i = BEGINBADGES + 1; i < BEGINBADGES + 1 + NUMBADGES*2; i+=2) {
+			Message m = (MessageId)i;
+			send(&m);
+		}
 	}
 private:
-	bool gameOver = false, running = false, badge = false;
+	bool gameOver = false, running = false;
 	int vidas = 3, score = 0, scoreRound = 0;
 	ScoreRenderer scoreRenderer_;
 	LiveRenderer livesRenderer_;
 	GameCtrlInputComponent gameCtrl_;
 	GameMsgRenderer gameMsg_;
 	BadgeTimer badgeTimer_;
+	const int BEGINBADGES = 9;//posicion en la que empiezan los mensajesde quitar badge
+	const int NUMBADGES = 3;//numero de badges que se pueden conseguir
+	int actualBadge = 0;//badge siguiente que cogeremos al destruir asteroides
 };

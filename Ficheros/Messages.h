@@ -17,9 +17,10 @@ enum MessageId {
 	ROUND_OVER,
 	BULLET_CREATED,
 	NO_MORE_ATROIDS,
-	BADGE_ON,
-	BADGE_OFF,
-	SUPER_ON,
+	//BADGES
+	BADGE_ON,//9, a partir de aqui comienzan los mensajes de badges (GameManager.h)
+	BADGE_OFF,//al añadir mas badges, poner sus mensajes debajo de estos de la misma manera (On, Off, On, Off, ...)
+	SUPER_ON,//y actualizar NUMBADGES de GameManader.h
 	SUPER_OFF,
 	MULTI_ON,
 	MULTI_OFF
