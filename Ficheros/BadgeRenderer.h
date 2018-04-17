@@ -13,6 +13,7 @@ public:
 	BadgeRenderer(int x, int y, Texture* text) : x_(x), y_(y), textura(text) {}
 	virtual ~BadgeRenderer() { textura = nullptr; }
 	virtual void render(GameObject* o, Uint32 time);
+	void changeImage(Texture* text) { textura = text; }
 };
 
 

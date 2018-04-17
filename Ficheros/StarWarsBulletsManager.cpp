@@ -43,9 +43,9 @@ void StarWarsBulletsManager::receive(Message* msg) {
 	else if (msg->id_ == ROUND_OVER)
 		for (int i = 0; i < bullets.size(); i++)bullets[i]->setActive(false);
 
-	else if (msg->id_ == BULLET_ASTROID_COLLISION) {//cuando choca con un asteroide o una nave pone esa bala a inactivo
+	else if (msg->id_ == BULLET_ASTROID_COLLISION && !super) {//cuando choca con un asteroide o una nave pone esa bala a inactivo
 		BulletAstroidCollision* m = static_cast<BulletAstroidCollision*>(msg);
-		if (!super)m->bullet_->setActive(false);
+		m->bullet_->setActive(false);
 	}
 	else if (msg->id_ == BULLET_FIGHTER_COLLISION) {
 		BulletFighterCollision* m = static_cast<BulletFighterCollision*>(msg);

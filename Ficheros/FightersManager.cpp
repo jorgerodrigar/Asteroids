@@ -10,9 +10,7 @@ FightersManager::FightersManager(SDLGame * game, Observer * bulletsManager) : Ga
 	rotationComp_ = RotationInputComponent(5, SDLK_LEFT, SDLK_RIGHT);
 	circulrMotoionComp_ = CircularMotionPhysics();
 	accelerationComp_ = AccelerationInputComponent(SDLK_UP, SDLK_DOWN, 1, 3, 0.8);
-	laserRenderer_ = BadgeRenderer(game->getResources()->getImageTexture(Resources::halcon)->getWidth() * 3 / 4, 0, game->getResources()->getImageTexture(Resources::laserUp));//simbolo del laserUp
-	superRenderer_ = BadgeRenderer(0, game->getResources()->getImageTexture(Resources::halcon)->getHeight() * 3 / 4, game->getResources()->getImageTexture(Resources::superUp));//simbolo del superUp
-	multiRenderer_ = BadgeRenderer(0, 0, game->getResources()->getImageTexture(Resources::multiUp));//simbolo del multiUp
+	badgeRenderer_ = BadgeRenderer(game->getResources()->getImageTexture(Resources::halcon)->getWidth() * 3 / 4, 0, game->getResources()->getImageTexture(Resources::laserUp));//simbolo del laserUp
 	switcher = ComponentSwitcher(game_, &fighter_);
 	switcher.addMode({ &gunComp1_, nullptr, nullptr, nullptr });
 	switcher.addMode({ &gunComp2_, nullptr, nullptr, nullptr });
@@ -63,27 +61,30 @@ void FightersManager::receive(Message* msg) {
 		fighter_.setActive(false);
 		break;
 	case BADGE_ON:
-		fighter_.delRenderComponent(&laserRenderer_);
-		switcher.setMode(1);
-		fighter_.addRenderComponent(&laserRenderer_);
+		fighter_.delRenderComponent(&badgeRenderer_);
+		switcher.setMode(1);//cambiamos la imagen dependidendo de que badge sea
+		badgeRenderer_.changeImage(getGame()->getResources()->getImageTexture(Resources::laserUp));
+		fighter_.addRenderComponent(&badgeRenderer_);
 		break;
 	case MULTI_ON:
-		fighter_.delRenderComponent(&multiRenderer_);
-		fighter_.addRenderComponent(&multiRenderer_);
+		fighter_.delRenderComponent(&badgeRenderer_);
+		badgeRenderer_.changeImage(getGame()->getResources()->getImageTexture(Resources::multiUp));
+		fighter_.addRenderComponent(&badgeRenderer_);
 		break;
 	case SUPER_ON:
-		fighter_.delRenderComponent(&superRenderer_);
-		fighter_.addRenderComponent(&superRenderer_);
+		fighter_.delRenderComponent(&badgeRenderer_);
+		badgeRenderer_.changeImage(getGame()->getResources()->getImageTexture(Resources::superUp));
+		fighter_.addRenderComponent(&badgeRenderer_);
 		break;
 	case BADGE_OFF:
 		switcher.setMode(0);
-		fighter_.delRenderComponent(&laserRenderer_);
+		fighter_.delRenderComponent(&badgeRenderer_);
 		break;
 	case MULTI_OFF:
-		fighter_.delRenderComponent(&multiRenderer_);
+		fighter_.delRenderComponent(&badgeRenderer_);
 		break;
 	case SUPER_OFF:
-		fighter_.delRenderComponent(&superRenderer_);
+		fighter_.delRenderComponent(&badgeRenderer_);
 		break;
 	}
 }

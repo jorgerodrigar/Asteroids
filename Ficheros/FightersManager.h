@@ -33,9 +33,7 @@ private:
 	RotationInputComponent rotationComp_;
 	GunInputComponent gunComp1_ = GunInputComponent(SDLK_SPACE, 5);
 	GunInputComponent gunComp2_ = GunInputComponent(SDLK_SPACE, 100); //powerUp
-	BadgeRenderer laserRenderer_;//simbolo del powerup
-	BadgeRenderer superRenderer_;//simbolo del powerup
-	BadgeRenderer multiRenderer_;//simbolo del powerup
+	BadgeRenderer badgeRenderer_;//simbolo del powerup
 	ComponentSwitcher switcher;
 };
 #endif /* FIGHTERSMANAGER_H_ */
